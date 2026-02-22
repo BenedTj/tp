@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. The system should **automatically load the stored customer records** upon every system launch.
 
 #### 📝 Additional Requirements
-1. The system should use the **standard format** for addresses and phone numbers.
+1. The system should use the standardized **Singapore address and phone number format**.
 
 ### Glossary
 
@@ -383,6 +383,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Delivery Route**: A sequence of stops planned for delivering meals to customers.
 * **Subscription**: A predefined plan for meal delivery over a specific period (e.g., 5, 10, or 20 days).
 * **Command**: A user input that triggers a specific action in the application (e.g., `add`, `delete`, `list`).
+* **Singapore Address Format:** A sequence of elements used to physically locate buildings, in the form `<Block Number>, <Street Name>, <Unit Number (if any)>, Singapore <Postal Code>` (e.g., 757 Woodlands Ave 4, #04-27, Singapore 730757).
+* **Singapore Phone Number Format:** A 8-digit number containing no spaces used for telecommunications within Singapore (e.g., `81234567`).
 
 --------------------------------------------------------------------------------------------------------------------
 
