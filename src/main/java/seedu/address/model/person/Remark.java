@@ -16,8 +16,11 @@ public class Remark {
      * @param remark A valid remark.
      */
     public Remark(String remark) {
-        requireNonNull(remark);
-        this.value = remark;
+        if (remark == null) {
+            this.value = "";
+        } else {
+            this.value = remark;
+        }
     }
 
     @Override
