@@ -31,7 +31,7 @@ public class RemarkCommandParser {
                     RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        String remark = argMultiMap.getValue(PREFIx_REMARK).orElse("");
+        String remark = argMultiMap.getValue(PREFIX_REMARK).orElse("");
 
         return new RemarkCommand(index, remark);
     }
