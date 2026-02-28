@@ -462,6 +462,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case 5: View all upcoming deliveries**
+
+**MSS**
+
+1. User requests to view all upcoming deliveries
+2. ServeMate shows a list of all upcoming deliveries for today onwards
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No upcoming deliveries are available.
+    * 2a1. ServeMate shows an empty result list.
+      Use case ends.
+
+**Use case 6: Add upcoming delivery**
+
+**MSS**
+
+1. User requests to add a new upcoming delivery with required fields
+2. ServeMate adds the upcoming delivery to the list of upcoming deliveries
+3. ServeMate shows a success message with the added upcoming delivery's details
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Any required field is missing.
+    * 1a1. ServeMate shows an error message describing the correct command format.
+      Use case ends.
+* 1b. Any parameter value is invalid.
+    * 1b1. ServeMate shows an error message describing the violated constraint.
+      Use case ends.
+* 1c. A delivery to the same customer on the same date and time already exists.
+    * 1c1. ServeMate shows an error message describing that a delivery to the same customer, date and time already exists.
+      Use case ends.
+
+**Use case 7: Delete upcoming delivery**
+
+**MSS**
+
+1. User requests to list all upcoming deliveries
+2. ServeMate shows a list of all upcoming deliveries from today onwards
+3. User requests to delete an upcoming delivery in the list
+4. ServeMate deletes the customer
+5. ServeMate shows a confirmation message with the deleted delivery's details
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of upcoming deliveries is empty.
+  Use case ends.
+* 3a. The given index is not a positive integer.
+  * 3a1. ServeMate shows an error message describing the correct command format.
+    Use case resumes at step 2.
+* 3b. The given index is out of range.
+  * 3b1. ServeMate shows an error message describing that the index value inserted is invalid.
+    Use case resumes at step 2.
+
+**Use case 8: Bulk import customer data**
+
+**MSS**
+
+1. User selects a CSV file containing a list of customer data
+2. User requests to add all customer in the CSV file into the customer list
+3. ServeMate filters all customers in the CSV file whose name already exists in the customer list from the list of customers to be added
+4. ServeMate adds the list of customers to be added from the CSV file into the customer list
+5. ServeMate shows a success message with the number of customer details imported and any customers not imported
+   Use case ends.
+
+**Extensions**
+
+* 2a. A required field in the form of a column within a row representing a customer is missing.
+  * 2a1. ServeMate shows an error message describing the missing value and the first offending row number.
+  Use case ends.
+* 2b. A parameter value in a row representing a customer is invalid.
+  * 2b1. ServeMate shows an error message describing the violated constraint and the first offending row number.
+  Use case ends.
+* 3a. A customer in one of the rows already exists in the customer list.
+  * 3a1. ServeMate stores the customer as a customer that is not imported to be displayed at step 5.
+  Use case resumes at step 4.
+
 ### Non-Functional Requirements
 
 #### 💻 Portability
