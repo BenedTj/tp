@@ -477,13 +477,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. ServeMate shows an empty result list.
       Use case ends.
 
-**Use case 6: Add upcoming delivery**
+**Use case 6: Add upcoming non-recurring delivery**
 
 **MSS**
 
-1. User requests to add a new upcoming delivery with required fields
-2. ServeMate adds the upcoming delivery to the list of upcoming deliveries
-3. ServeMate shows a success message with the added upcoming delivery's details
+1. User requests to add a new upcoming non-recurring delivery with required fields
+2. ServeMate adds the upcoming non-recurring delivery to the list of upcoming deliveries
+3. ServeMate shows a success message with the added upcoming non-recurring delivery's details
 
    Use case ends.
 
@@ -499,14 +499,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. ServeMate shows an error message describing that a delivery to the same customer at the same date and time already exists.
       Use case ends.
 
-**Use case 7: Delete upcoming delivery**
+**Use case 7: Delete upcoming non-recurring delivery**
 
 **MSS**
 
 1. User requests to list all upcoming deliveries
 2. ServeMate shows a list of all upcoming deliveries from today onwards
-3. User requests to delete an upcoming delivery in the list
-4. ServeMate deletes the upcoming delivery
+3. User requests to delete an upcoming non-recurring delivery in the list
+4. ServeMate deletes the single upcoming non-recurring delivery
 5. ServeMate shows a confirmation message with the deleted delivery's details
    Use case ends.
 
