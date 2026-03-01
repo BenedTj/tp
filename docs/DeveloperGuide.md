@@ -518,31 +518,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. ServeMate shows an error message describing the correct command format.
     Use case resumes at step 2.
 * 3b. The given index is out of range.
-  * 3b1. ServeMate shows an error message describing that the index value inserted is invalid.
+  * 3b1. ServeMate shows an error message describing that the index value given is invalid.
     Use case resumes at step 2.
 
-**Use case 8: Bulk import customer data**
+**Use case 8: Tag customer by food preference**
 
 **MSS**
 
-1. User selects a CSV file containing a list of customer data
-2. User requests to add all customer in the CSV file into the customer list
-3. ServeMate filters all customers in the CSV file whose name already exists in the customer list from the list of customers to be added
-4. ServeMate adds the list of customers to be added from the CSV file into the customer list
-5. ServeMate shows a success message with the number of customer details imported and any customers not imported
-   Use case ends.
+1. User requests to view the help page
+2. ServeMate shows a list of customers
+3. User requests to tag a customer in the list by food preference from the pre-determined options
+4. ServeMate tags the customer in the customer record
+5. ServeMate shows a success message with the updated customer's details including the food preference tag
 
 **Extensions**
 
-* 2a. A required field in the form of a column within a row representing a customer is missing.
-  * 2a1. ServeMate shows an error message describing the missing value and the first offending row number.
+* 2a. The list of customers is empty.
   Use case ends.
-* 2b. A parameter value in a row representing a customer is invalid.
-  * 2b1. ServeMate shows an error message describing the violated constraint and the first offending row number.
-  Use case ends.
-* 3a. A customer in one of the rows already exists in the customer list.
-  * 3a1. ServeMate stores the customer as a customer that is not imported to be displayed at step 5.
-  Use case resumes at step 4.
+* 3a. The given index is not a positive integer.
+    * 3a1. ServeMate shows an error message describing the correct command format.
+      Use case resumes at step 2.
+* 3b. The given index is out of range.
+    * 3b1. ServeMate shows an error message describing that the index value given is invalid.
+      Use case resumes at step 2.
+* 3c. The given tag is not within the pre-determined choices of food preference
+    * 3c1. ServeMate shows an error message describing that the tag is not within the pre-determined options of food preference tags and shows the options.
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
