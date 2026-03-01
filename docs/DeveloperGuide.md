@@ -566,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3c. The given tag is not within the pre-determined choices of food preference
+* 3c. The given tag is not within the pre-determined choices of food preference.
 
     * 3c1. ServeMate shows an error message describing that the tag is not within the pre-determined options of food preference tags and shows the options.
   
