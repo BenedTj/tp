@@ -16,11 +16,11 @@ public class EndDate {
             "Date should be of the valid end date format";
 
     /**
-     * The date must follow the format yyyy-mm-dd
-     * where yyyy is the 4-digit year, mm is the 2-digit month,
+     * The date must follow the format yyyy-MM-dd
+     * where yyyy is the 4-digit year, MM is the 2-digit month number,
      * and dd is the 2-digit date number.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public final LocalDate date;
 
