@@ -1,7 +1,9 @@
 package seedu.address.model.delivery;
 
 import java.time.DayOfWeek;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -18,6 +20,8 @@ public class DeliveryDay {
      * The day must follow the format of
      * having the complete day of the week word.
      */
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
+
     public final DayOfWeek day;
 
     /**
@@ -28,7 +32,9 @@ public class DeliveryDay {
     public DeliveryDay(String day) {
         requireNonNull(day);
         checkArgument(isValidDeliveryDay(day), MESSAGE_CONSTRAINTS);
-        this.day = DayOfWeek.valueOf(day.toUpperCase());
+        String dayWithCorrectFormat = day.substring(0, 1).toUpperCase()
+                + day.substring(1).toLowerCase();
+        this.day = DayOfWeek.from(formatter.parse(dayWithCorrectFormat));
     }
 
     /**
@@ -37,7 +43,14 @@ public class DeliveryDay {
      */
     public static boolean isValidDeliveryDay(String test) {
         try {
-            DayOfWeek.valueOf(test.toUpperCase());
+            // To prevent out of bounds access.
+            if (test.length() <= 2) {
+                return false;
+            }
+
+            String testWithCorrectFormat = test.substring(0, 1).toUpperCase()
+                    + test.substring(1).toLowerCase();
+            DayOfWeek.from(formatter.parse(testWithCorrectFormat));
             return true;
         } catch (DateTimeParseException e) {
             return false;
