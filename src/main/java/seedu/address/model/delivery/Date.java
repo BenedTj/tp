@@ -18,11 +18,11 @@ public class Date {
             "Date should be of the valid date format";
 
     /**
-     * The date must follow the format MMM dd yyyy
-     * where MMM is the 3-character month, dd is the 2-character date number
-     * and yyyy is the 4-character year.
+     * The date must follow the format yyyy-mm-dd
+     * where yyyy is the 4-digit year, mm is the 2-digit month,
+     * and dd is the 2-digit date number.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 
     public final LocalDate date;
 
