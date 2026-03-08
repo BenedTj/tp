@@ -1,11 +1,11 @@
 package seedu.address.model.delivery;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Represents a Delivery in the address book.
@@ -18,7 +18,7 @@ public class Delivery {
     private final EndDate endDate;
     private final Set<DeliveryDay> deliveryDays = new HashSet<>();
     private final DeliveryTime deliveryTime;
-    private final Set<SkippedDate> skippedDates =  new HashSet<>();
+    private final Set<SkippedDate> skippedDates = new HashSet<>();
 
     /**
      * Every field must be present and not null.

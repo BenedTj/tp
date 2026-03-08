@@ -1,12 +1,11 @@
 package seedu.address.model.delivery;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 /**
  * Represents a Delivery's time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeliveryTime(String)}
@@ -20,7 +19,7 @@ public class DeliveryTime {
      * where HH is the hour value in the 24-hour format
      * and mm is the minute value.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     public final LocalTime time;
 
@@ -32,7 +31,7 @@ public class DeliveryTime {
     public DeliveryTime(String time) {
         requireNonNull(time);
         checkArgument(isValidDeliveryTime(time), MESSAGE_CONSTRAINTS);
-        this.time = LocalTime.parse(time, formatter);
+        this.time = LocalTime.parse(time, FORMATTER);
     }
 
     /**
@@ -41,7 +40,7 @@ public class DeliveryTime {
      */
     public static boolean isValidDeliveryTime(String test) {
         try {
-            LocalTime.parse(test, formatter);
+            LocalTime.parse(test, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;

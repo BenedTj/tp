@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.delivery.exceptions.DuplicateDeliveryException;
 import seedu.address.model.delivery.exceptions.DeliveryNotFoundException;
+import seedu.address.model.delivery.exceptions.DuplicateDeliveryException;
 
 /**
  * A list of deliveries that enforces uniqueness between its elements and does not allow nulls.

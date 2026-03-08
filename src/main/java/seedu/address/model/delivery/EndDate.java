@@ -1,11 +1,11 @@
 package seedu.address.model.delivery;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's end date in the address book.
@@ -20,7 +20,7 @@ public class EndDate {
      * where yyyy is the 4-digit year, MM is the 2-digit month number,
      * and dd is the 2-digit date number.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public final LocalDate date;
 
@@ -32,7 +32,7 @@ public class EndDate {
     public EndDate(String date) {
         requireNonNull(date);
         checkArgument(isValidEndDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDate.parse(date, formatter);
+        this.date = LocalDate.parse(date, FORMATTER);
     }
 
     /**
@@ -41,7 +41,7 @@ public class EndDate {
      */
     public static boolean isValidEndDate(String test) {
         try {
-            LocalDate.parse(test, formatter);
+            LocalDate.parse(test, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;

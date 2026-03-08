@@ -1,12 +1,12 @@
 package seedu.address.model.delivery;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's day in the address book.
@@ -20,7 +20,7 @@ public class DeliveryDay {
      * The day must follow the format of
      * having the complete day of the week word.
      */
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
 
     public final DayOfWeek day;
 
@@ -34,7 +34,7 @@ public class DeliveryDay {
         checkArgument(isValidDeliveryDay(day), MESSAGE_CONSTRAINTS);
         String dayWithCorrectFormat = day.substring(0, 1).toUpperCase()
                 + day.substring(1).toLowerCase();
-        this.day = DayOfWeek.from(formatter.parse(dayWithCorrectFormat));
+        this.day = DayOfWeek.from(FORMATTER.parse(dayWithCorrectFormat));
     }
 
     /**
@@ -50,7 +50,7 @@ public class DeliveryDay {
 
             String testWithCorrectFormat = test.substring(0, 1).toUpperCase()
                     + test.substring(1).toLowerCase();
-            DayOfWeek.from(formatter.parse(testWithCorrectFormat));
+            DayOfWeek.from(FORMATTER.parse(testWithCorrectFormat));
             return true;
         } catch (DateTimeParseException e) {
             return false;
