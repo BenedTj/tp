@@ -2,7 +2,10 @@ package seedu.address.model.delivery;
 
 import seedu.address.commons.util.ToStringBuilder;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Delivery in the address book.
@@ -13,14 +16,16 @@ public class Delivery {
     // Data fields
     private final StartDate startDate;
     private final EndDate endDate;
+    private final Set<DeliveryDay> deliveryDays = new HashSet<>();
     private final DeliveryTime deliveryTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Delivery(StartDate startDate, EndDate endDate, DeliveryTime deliveryTime) {
+    public Delivery(StartDate startDate, EndDate endDate, Set<DeliveryDay> deliveryDays, DeliveryTime deliveryTime) {
         this.startDate = startDate;
         this.endDate = endDate;
+        this.deliveryDays.addAll(deliveryDays);
         this.deliveryTime = deliveryTime;
     }
 
@@ -34,6 +39,14 @@ public class Delivery {
 
     public DeliveryTime getDeliveryTime() {
         return deliveryTime;
+    }
+
+    /**
+     * Returns an immutable delivery day set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<DeliveryDay> getDeliveryDays() {
+        return Collections.unmodifiableSet(deliveryDays);
     }
 
     /**
@@ -67,13 +80,14 @@ public class Delivery {
         Delivery otherDelivery = (Delivery) other;
         return startDate.equals(otherDelivery.startDate)
                 && endDate.equals(otherDelivery.endDate)
+                && deliveryDays.equals(otherDelivery.deliveryDays)
                 && deliveryTime.equals(otherDelivery.deliveryTime);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(startDate, endDate, deliveryTime);
+        return Objects.hash(startDate, endDate, deliveryDays, deliveryTime);
     }
 
     @Override
@@ -81,6 +95,7 @@ public class Delivery {
         return new ToStringBuilder(this)
                 .add("start date", startDate)
                 .add("end date", endDate)
+                .add("delivery days", deliveryDays)
                 .add("delivery time", deliveryTime)
                 .toString();
     }
