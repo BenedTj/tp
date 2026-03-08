@@ -16,11 +16,11 @@ public class Time {
             "Time should be of the valid time format";
 
     /**
-     * The time must follow the format HHmm
+     * The time must follow the format HH:mm
      * where HH is the hour value in the 24-hour format
      * and mm is the minute value.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public final LocalTime time;
 
