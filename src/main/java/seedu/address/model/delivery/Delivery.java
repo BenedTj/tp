@@ -18,15 +18,21 @@ public class Delivery {
     private final EndDate endDate;
     private final Set<DeliveryDay> deliveryDays = new HashSet<>();
     private final DeliveryTime deliveryTime;
+    private final Set<SkippedDate> skippedDates =  new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Delivery(StartDate startDate, EndDate endDate, Set<DeliveryDay> deliveryDays, DeliveryTime deliveryTime) {
+    public Delivery(StartDate startDate,
+                    EndDate endDate,
+                    Set<DeliveryDay> deliveryDays,
+                    DeliveryTime deliveryTime,
+                    Set<SkippedDate> skippedDates) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.deliveryDays.addAll(deliveryDays);
         this.deliveryTime = deliveryTime;
+        this.skippedDates.addAll(skippedDates);
     }
 
     public StartDate getStartDate() {
@@ -47,6 +53,14 @@ public class Delivery {
      */
     public Set<DeliveryDay> getDeliveryDays() {
         return Collections.unmodifiableSet(deliveryDays);
+    }
+
+    /**
+     * Returns an immutable skipped date set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<SkippedDate> getSkippedDates() {
+        return Collections.unmodifiableSet(skippedDates);
     }
 
     /**
@@ -81,13 +95,14 @@ public class Delivery {
         return startDate.equals(otherDelivery.startDate)
                 && endDate.equals(otherDelivery.endDate)
                 && deliveryDays.equals(otherDelivery.deliveryDays)
-                && deliveryTime.equals(otherDelivery.deliveryTime);
+                && deliveryTime.equals(otherDelivery.deliveryTime)
+                && skippedDates.equals(otherDelivery.skippedDates);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(startDate, endDate, deliveryDays, deliveryTime);
+        return Objects.hash(startDate, endDate, deliveryDays, deliveryTime, skippedDates);
     }
 
     @Override
@@ -97,6 +112,7 @@ public class Delivery {
                 .add("end date", endDate)
                 .add("delivery days", deliveryDays)
                 .add("delivery time", deliveryTime)
+                .add("skipped dates", skippedDates)
                 .toString();
     }
 }
