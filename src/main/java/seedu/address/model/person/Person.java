@@ -115,19 +115,16 @@ public class Person {
 
         Person otherPerson = (Person) other;
 
+        boolean isNonNullableFieldsEqual = name.equals(otherPerson.name)
+                && phone.equals(otherPerson.phone)
+                && email.equals(otherPerson.email)
+                && address.equals(otherPerson.address)
+                && tags.equals(otherPerson.tags);
+
         if (delivery == null) {
-            return name.equals(otherPerson.name)
-                    && phone.equals(otherPerson.phone)
-                    && email.equals(otherPerson.email)
-                    && address.equals(otherPerson.address)
-                    && tags.equals(otherPerson.tags);
+            return isNonNullableFieldsEqual && otherPerson.delivery == null;
         } else {
-            return name.equals(otherPerson.name)
-                    && phone.equals(otherPerson.phone)
-                    && email.equals(otherPerson.email)
-                    && address.equals(otherPerson.address)
-                    && tags.equals(otherPerson.tags)
-                    && delivery.equals(otherPerson.delivery);
+            return isNonNullableFieldsEqual && delivery.equals(otherPerson.delivery);
         }
     }
 
