@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.UniqueDeliveryList;
 
 /**
  * A utility class containing a list of {@code Delivery} objects to be used in tests.
@@ -33,15 +32,6 @@ public class TypicalDeliveries {
             .withSkippedDates("2019-05-28").build();
 
     private TypicalDeliveries() {} // prevents instantiation
-
-    /**
-     * Returns an {@code UniqueDeliveryList} with all the typical deliveries.
-     */
-    public static UniqueDeliveryList getTypicalDeliveryList() {
-        UniqueDeliveryList dl = new UniqueDeliveryList();
-        dl.setDeliveries(getTypicalDeliveries());
-        return dl;
-    }
 
     public static List<Delivery> getTypicalDeliveries() {
         return new ArrayList<>(Arrays.asList(DELIVERY_ONE, DELIVERY_TWO, DELIVERY_THREE, DELIVERY_FOUR, DELIVERY_FIVE));
