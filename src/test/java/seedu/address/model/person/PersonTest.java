@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliveries.DELIVERY_ALICE;
-import static seedu.address.testutil.TypicalDeliveries.DELIVERY_BENSON;
+import static seedu.address.testutil.TypicalDeliveries.DELIVERY_CARL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -45,7 +45,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // delivery object differs, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withDelivery(DELIVERY_BENSON).build();
+        editedAlice = new PersonBuilder(ALICE).withDelivery(DELIVERY_CARL).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // name differs in case, all other attributes same -> returns false

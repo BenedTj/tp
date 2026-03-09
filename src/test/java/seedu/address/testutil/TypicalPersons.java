@@ -11,10 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalDeliveries.DELIVERY_ALICE;
-import static seedu.address.testutil.TypicalDeliveries.DELIVERY_BENSON;
-import static seedu.address.testutil.TypicalDeliveries.DELIVERY_CARL;
-import static seedu.address.testutil.TypicalDeliveries.DELIVERY_DANIEL;
-import static seedu.address.testutil.TypicalDeliveries.DELIVERY_ELLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,14 +38,12 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withDelivery(DELIVERY_BENSON)
             .build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
-            .withDelivery(DELIVERY_CARL)
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -57,14 +51,12 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
-            .withDelivery(DELIVERY_DANIEL)
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
-            .withDelivery(DELIVERY_ELLE)
             .build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
