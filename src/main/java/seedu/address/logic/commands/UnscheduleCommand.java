@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,8 @@ public class UnscheduleCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DELIVERY_SUCCESS = "Deleted Delivery for Person: %1$s";
+    public static final String MESSAGE_MISSING_DELIVERY =
+            "This person does not have an existing delivery in the address book.";
 
     private final Index targetIndex;
 
@@ -48,7 +51,14 @@ public class UnscheduleCommand extends Command {
         }
 
         Person personToUnschedule = lastShownList.get(targetIndex.getZeroBased());
-        model.setPerson(personToUnschedule, removeDelivery(personToUnschedule));
+        Person personWithNoDelivery = removeDelivery(personToUnschedule);
+
+        if (!personToUnschedule.hasDelivery()) {
+            throw new CommandException(MESSAGE_MISSING_DELIVERY);
+        }
+
+        model.setPerson(personToUnschedule, personWithNoDelivery);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_DELIVERY_SUCCESS,
                 Messages.formatDelivery(personToUnschedule)));
     }
