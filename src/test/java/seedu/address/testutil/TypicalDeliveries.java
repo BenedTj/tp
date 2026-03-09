@@ -34,6 +34,7 @@ public class TypicalDeliveries {
     private TypicalDeliveries() {} // prevents instantiation
 
     public static List<Delivery> getTypicalDeliveries() {
-        return new ArrayList<>(Arrays.asList(DELIVERY_ALICE, DELIVERY_CARL, DELIVERY_DANIEL, DELIVERY_ELLE, DELIVERY_FIONA));
+        return new ArrayList<>(Arrays.asList(
+                DELIVERY_ALICE, DELIVERY_CARL, DELIVERY_DANIEL, DELIVERY_ELLE, DELIVERY_FIONA));
     }
 }
