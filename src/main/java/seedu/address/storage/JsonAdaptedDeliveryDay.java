@@ -22,7 +22,7 @@ public class JsonAdaptedDeliveryDay {
     }
 
     /**
-     * Convertsa a given {@code DeliveryDay} into this class for Jackson use.
+     * Converts a given {@code DeliveryDay} into this class for Jackson use.
      */
     public JsonAdaptedDeliveryDay(DeliveryDay source) {
         dayOfWeek = source.toString();
