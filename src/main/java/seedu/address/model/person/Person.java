@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -26,11 +25,18 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Optional<Delivery> delivery;
+    private final Delivery delivery;
 
     /**
      * Constructs a {@code Person} where every field,
      * except for deliveries, must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(name, phone, email, address, tags, null);
+    }
+
+    /**
+     * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Delivery delivery) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -39,7 +45,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.delivery = Optional.ofNullable(delivery);
+        this.delivery = delivery;
     }
 
     public Name getName() {
@@ -62,14 +68,14 @@ public class Person {
      * Returns true if the person has a {@code delivery}.
      */
     public boolean hasDelivery() {
-        return delivery.isPresent();
+        return delivery != null;
     }
 
     /**
      * Returns the Delivery object of the person, which could be null.
      */
     public Delivery getDelivery() {
-        return delivery.orElse(null);
+        return delivery;
     }
 
     /**
@@ -109,18 +115,24 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+
+        boolean isNonNullableFieldsEqual = name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags)
-                && delivery.equals(otherPerson.delivery);
+                && tags.equals(otherPerson.tags);
+
+        if (delivery == null) {
+            return isNonNullableFieldsEqual && otherPerson.delivery == null;
+        } else {
+            return isNonNullableFieldsEqual && delivery.equals(otherPerson.delivery);
+        }
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, getDelivery());
+        return Objects.hash(name, phone, email, address, tags, delivery);
     }
 
     @Override
@@ -131,7 +143,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
-                .add("delivery", getDelivery())
+                .add("delivery", delivery)
                 .toString();
     }
 

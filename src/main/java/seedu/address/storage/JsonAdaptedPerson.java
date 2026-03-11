@@ -117,7 +117,7 @@ class JsonAdaptedPerson {
         if (delivery != null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, delivery.toModelType());
         } else {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         }
     }
 

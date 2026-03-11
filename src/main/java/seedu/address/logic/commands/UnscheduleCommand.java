@@ -76,7 +76,7 @@ public class UnscheduleCommand extends Command {
         Address address = personToUnschedule.getAddress();
         Set<Tag> tags = personToUnschedule.getTags();
 
-        return new Person(name, phone, email, address, tags, null);
+        return new Person(name, phone, email, address, tags);
     }
 
     @Override
