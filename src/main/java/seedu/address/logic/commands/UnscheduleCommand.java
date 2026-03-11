@@ -60,7 +60,7 @@ public class UnscheduleCommand extends Command {
         model.setPerson(personToUnschedule, personWithNoDelivery);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_DELIVERY_SUCCESS,
-                Messages.formatDelivery(personToUnschedule)));
+                Messages.formatDeliveryFromPerson(personToUnschedule)));
     }
 
     /**

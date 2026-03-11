@@ -35,7 +35,7 @@ public class UnscheduleCommandTest {
         UnscheduleCommand unscheduleCommand = new UnscheduleCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(UnscheduleCommand.MESSAGE_DELETE_DELIVERY_SUCCESS,
-                Messages.formatDelivery(personToUnschedule));
+                Messages.formatDeliveryFromPerson(personToUnschedule));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithNoDelivery);
@@ -71,7 +71,7 @@ public class UnscheduleCommandTest {
         UnscheduleCommand unscheduleCommand = new UnscheduleCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(UnscheduleCommand.MESSAGE_DELETE_DELIVERY_SUCCESS,
-                Messages.formatDelivery(personToUnschedule));
+                Messages.formatDeliveryFromPerson(personToUnschedule));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithNoDelivery);
