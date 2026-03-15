@@ -35,6 +35,7 @@ public class Person {
         this(name, phone, email, address, tags, null);
     }
 
+    //@author BenedTj
     /**
      * Every field must be present and not null.
      */
@@ -47,6 +48,7 @@ public class Person {
         this.tags.addAll(tags);
         this.delivery = delivery;
     }
+    //@@author
 
     public Name getName() {
         return name;
@@ -114,6 +116,7 @@ public class Person {
             return false;
         }
 
+        //@@author BenedTj
         Person otherPerson = (Person) other;
 
         boolean isNonNullableFieldsEqual = name.equals(otherPerson.name)
@@ -127,6 +130,7 @@ public class Person {
         } else {
             return isNonNullableFieldsEqual && delivery.equals(otherPerson.delivery);
         }
+        //@@author
     }
 
     @Override
