@@ -37,6 +37,45 @@ public class DeliveryDayTest {
     }
 
     @Test
+    // TODO: Refactor or remove after refactoring DeliveryDay class.
+    public void isValidDeliveryDayNumber() {
+        // null start date
+        assertThrows(NullPointerException.class, () -> DeliveryDay.isValidDeliveryDayNumber(null));
+
+        // invalid start dates
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("")); // empty string
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber(" ")); // spaces only
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("Mon")); // 3-character day
+        // full word representing the day
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("Monday"));
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("thursday"));
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("FRIDAY"));
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("WEDnesDay"));
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("-3")); // negative number
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("0")); // zero value
+        assertFalse(DeliveryDay.isValidDeliveryDayNumber("8")); // number exceeding 7
+
+        // valid days
+        assertTrue(DeliveryDay.isValidDeliveryDayNumber("1"));
+        assertTrue(DeliveryDay.isValidDeliveryDayNumber("3"));
+        assertTrue(DeliveryDay.isValidDeliveryDayNumber("4"));
+        assertTrue(DeliveryDay.isValidDeliveryDayNumber("7"));
+    }
+
+    @Test
+    // TODO: Refactor or remove after refactoring DeliveryDay class.
+    public void convertDayNumberToDayWord_nullDayNumber_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> DeliveryDay.convertDayNumberToDayWord(null));
+    }
+
+    @Test
+    // TODO: Refactor or remove after refactoring DeliveryDay class.
+    public void convertDayNumberToDayWord_invalidDayNumber_throwsIllegalArgumentException() {
+        String invalidDayNumber = "";
+        assertThrows(IllegalArgumentException.class, () -> DeliveryDay.convertDayNumberToDayWord(invalidDayNumber));
+    }
+
+    @Test
     public void equals() {
         DeliveryDay day = new DeliveryDay("Tuesday");
 
