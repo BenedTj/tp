@@ -199,18 +199,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deliveryDay} into a {@code DeliveryDay}.
+     * Parses a {@code String deliveryDayNumber} into a {@code DeliveryDay}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deliveryDay} is invalid.
+     * @throws ParseException if the given {@code deliveryDayNumber} is invalid.
      */
-    public static DeliveryDay parseDeliveryDay(String deliveryDay) throws ParseException {
-        requireNonNull(deliveryDay);
-        String trimmedDeliveryDay = deliveryDay.trim();
-        if (!DeliveryDay.isValidDeliveryDay(trimmedDeliveryDay)) {
+    public static DeliveryDay parseDeliveryDayNumber(String deliveryDayNumber) throws ParseException {
+        requireNonNull(deliveryDayNumber);
+        String trimmedDeliveryDayNumber = deliveryDayNumber.trim();
+        if (!DeliveryDay.isValidDeliveryDayNumber(trimmedDeliveryDayNumber)) {
             throw new ParseException(DeliveryDay.MESSAGE_CONSTRAINTS);
         }
-        return new DeliveryDay(trimmedDeliveryDay);
+        // TODO: Refactor after the refactoring of the DeliveryDay.
+        String deliveryDayWord = DeliveryDay.convertDayNumberToDayWord(trimmedDeliveryDayNumber);
+        return new DeliveryDay(deliveryDayWord);
     }
 
     /**
@@ -221,8 +223,8 @@ public class ParserUtil {
         String trimmedDeliveryDays = deliveryDays.trim();
         String[] listOfDeliveryDays = trimmedDeliveryDays.split("");
         final Set<DeliveryDay> deliveryDaySet = new HashSet<>();
-        for (String deliveryDay : listOfDeliveryDays) {
-            deliveryDaySet.add(parseDeliveryDay(deliveryDay));
+        for (String deliveryDayNumber : listOfDeliveryDays) {
+            deliveryDaySet.add(parseDeliveryDayNumber(deliveryDayNumber));
         }
         return deliveryDaySet;
     }
