@@ -56,6 +56,7 @@ public class ScheduleCommand extends Command {
      * to the Person object found at the specified index of the address book.
      */
     public ScheduleCommand(Index targetIndex, Delivery delivery) {
+        requireNonNull(delivery);
         this.targetIndex = targetIndex;
         this.toSchedule = delivery;
     }
