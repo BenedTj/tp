@@ -352,23 +352,23 @@
 }
 
 .delivery-section {
-    -fx-padding: 6;
-    -fx-spacing: 4;
-    -fx-border-color: #444444;
-    -fx-border-width: 1;
+    -fx-padding: 5;
+    -fx-spacing: 2;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 2;
     -fx-border-radius: 5;
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: rgba(255, 255, 255, 0.05);
     -fx-background-radius: 5;
 }
 
 .delivery-header {
-    -fx-text-fill: #aaaaaa;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-underline: true;
+    -fx-font-size: 14px;
     -fx-padding: 0 0 2 0;
 }
 
-.delivery-date-label {
-    -fx-text-fill: #cccccc;
-    -fx-font-size: 12px;
+.delivery-schedule {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
 }
