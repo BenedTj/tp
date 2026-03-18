@@ -63,13 +63,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(getTypicalPersons(), model.getFilteredPersonList());
@@ -77,12 +77,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleNameKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Arrays.asList("Kurz", "Elle", "Kunz"), Collections.emptyList(), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
@@ -90,12 +91,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleAddressKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Collections.emptyList(), Arrays.asList("street", "nonexistent"), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, DANIEL, GEORGE), model.getFilteredPersonList());
@@ -103,12 +105,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleTagKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Collections.emptyList(), Collections.emptyList(), Arrays.asList("friends", "colleagues"));
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
@@ -116,12 +119,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleFiltersAndKeywords_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Arrays.asList("Kurz", "Elle", "Kunz"), Arrays.asList("street"), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
@@ -129,12 +133,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_allFiltersAndMixedCaseKeywords_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-
         PersonMatchesFilterPredicate predicate = new PersonMatchesFilterPredicate(
                 Arrays.asList("dAnieL"), Arrays.asList("strEEt"), Arrays.asList("FRiends"));
         FindCommand command = new FindCommand(predicate);
+
         expectedModel.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL), model.getFilteredPersonList());
