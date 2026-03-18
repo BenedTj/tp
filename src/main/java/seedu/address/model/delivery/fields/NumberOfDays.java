@@ -35,7 +35,11 @@ public class NumberOfDays {
 
         try {
             int number = Integer.parseUnsignedInt(test);
-            return number > 0;
+
+            assert number >= 0;
+
+            // ensure that number is not zero since it is not allowed.
+            return number != 0;
         } catch (NumberFormatException e) {
             return false;
         }
