@@ -4,7 +4,7 @@
     "phone" : "87438807",
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
-    "tags" : [ "leave at door" ],
+    "tags" : [ "LeaveAtDoor" ],
     "delivery" : {
       "startDate" : "2026-10-21",
       "endDate" : "2026-12-21",
@@ -17,7 +17,7 @@
     "phone" : "99272758",
     "email" : "berniceyu@example.com",
     "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
-    "tags" : [ "no seafood", "no egg" ],
+    "tags" : [ "NoSeafood", "NoEgg" ],
     "delivery" : {
       "startDate" : "2026-10-09",
       "endDate" : "2026-12-21",
@@ -37,21 +37,21 @@
     "phone" : "91031282",
     "email" : "lidavid@example.com",
     "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
-    "tags" : [ "add rice" ],
+    "tags" : [ "AddRice" ],
     "delivery" : null
   }, {
     "name" : "Irfan Ibrahim",
     "phone" : "92492021",
     "email" : "irfan@example.com",
     "address" : "Blk 47 Tampines Street 20, #17-35",
-    "tags" : [ "halal" ],
+    "tags" : [ "Halal" ],
     "delivery" : null
   }, {
     "name" : "Roy Balakrishnan",
     "phone" : "92624417",
     "email" : "royb@example.com",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "tags" : [ "vegetarian" ],
+    "tags" : [ "Vegetarian" ],
     "delivery" : null
   } ]
 }
