@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalDeliveries.DELIVERY_CARL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -90,11 +91,20 @@ public class PersonTest {
                 .withDelivery(delivery)
                 .build();
         assertEquals(Set.of("TUESDAY", "FRIDAY"), person.getDeliveryDayNames());
+
+        // no delivery days -> return empty set
+        delivery = new DeliveryBuilder()
+                .withDeliveryDays()
+                .build();
+        person = new PersonBuilder()
+                .withDelivery(delivery)
+                .build();
+        assertEquals(Collections.emptySet(), person.getDeliveryDayNames());
     }
 
     @Test
-    public void getDeliveryDayNames_personWithoutDelivery_returnsNull() {
-        assertNull(BOB.getDeliveryDayNames());
+    public void getDeliveryDayNames_personWithoutDelivery_returnsEmptySet() {
+        assertEquals(Collections.emptySet(), BOB.getDeliveryDayNames());
     }
 
     @Test
