@@ -147,7 +147,7 @@ public class RescheduleCommand extends Command {
     public static class RescheduleDeliveryDescriptor {
         private StartDate startDate;
         private EndDate endDate;
-        private Set<DeliveryDay> deliveryDays = new HashSet<>();
+        private Set<DeliveryDay> deliveryDays;
         private DeliveryTime deliveryTime;
 
         /**
