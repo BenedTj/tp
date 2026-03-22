@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.RescheduleCommand.RescheduleDeliveryDescriptor;
 import seedu.address.testutil.RescheduleDeliveryDescriptorBuilder;
 
+/**
+ * Contains unit tests for RescheduleDeliveryDescriptor.
+ */
 public class RescheduleDeliveryDescriptorTest {
 
     @Test
