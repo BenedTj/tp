@@ -11,23 +11,29 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 ### Original Source
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+### Libraries Used
+* [JavaFX](https://openjfx.io/) for GUI rendering.
+* [Jackson](https://github.com/FasterXML/jackson) for JSON processing.
+* [JUnit5](https://github.com/junit-team/junit5) for unit and integration testing.
+* [PlantUML](https://plantuml.com/stdlib) for generating UML diagrams.
 
 ### AI Generated Work
 * Gemini was used to generate the ServeMate icon for the application and GUI window.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting Up and Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <box type="info" seamless>
 
@@ -163,23 +169,63 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Feature implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find Customer by Attribute Feature
+### Find customer by attribute
 
-### Find Delivery by Date
+### Find delivery by date
 
-### Schedule Delivery Feature
+### Schedule delivery
 
-### Unschedule Delivery Feature
+### Reschedule delivery
 
-### \[Proposed\] Sort Delivery by Delivery Time Feature
+### Unschedule delivery
+
+**Objective:** Allows administrative staff to delete a delivery that is associated with the specified customer, without deleting the customer record.
+
+#### Implementation details
+The following sequence diagram illustrates the interactions within the `Logic` component for unscheduling a delivery:
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `UnscheduleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
+<puml src="diagrams/UnscheduleSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `unschedule 2` Command" />
+
+**Execution flow:**
+1. The user enters the `unschedule` command as an input string.
+2. `LogicManager` receives the input string and passes it to `AddressBookParser`.
+3. `AddressBookParser` creates an `UnscheduleCommandParser` to parse the command arguments.
+4. `UnscheduleCommandParser` parses the index and creates an `UnscheduleCommand` object.
+5. `LogicManager` executes the `UnscheduleCommand` object.
+6. `UnscheduleCommand` checks whether the specified customer and their delivery exist.
+7. If the customer has a delivery, `UnscheduleCommand` creates a new `Person` object with all existing fields intact except the delivery.
+8. `UnscheduleCommand` requests `Model` to replace the old entry in the address book with the newly created `Person` object.
+9. `UnscheduleCommand` completes and returns the result of the `unschedule` command.
+
+#### Design considerations
+
+1. How the command is named.
+    * **Chosen:** Name the command as `unschedule`.
+      * Pros: User-friendly and intuitive, as it maintains consistency with delivery-related commands (`schedule`, `reschedule`).
+      * Cons: Not commonly used in standard English, which may cause first-time users to find it unusual.
+    * **Alternative:** Name the command as `cancel`.
+      * Pros: Familiar word that users are unlikely to mistype.
+      * Cons: Ambiguous, since `cancel` could refer to cancelling of other actions beyond deliveries; breaks consistency with `schedule` and `reschedule`.
+2. How `unschedule` removes the delivery from a person.
+    * **Chosen:** Implement a dedicated `unschedule` command.
+      * Pros: One-shot command that enables users to easily remove the delivery of the specified person.
+      * Cons: Requires implementing a new command class.
+    * **Alternative:** Instruct the user to delete the customer and add them back without their delivery details.
+      * Pros: Reuses existing `delete` and `add` commands without needing additional implementation effort.
+      * Cons: More error-prone, as the user must manually re-enter the customer's details.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -189,7 +235,7 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -564,7 +610,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
