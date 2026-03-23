@@ -6,6 +6,7 @@ import static seedu.address.commons.util.DateTimeUtil.isValidDeliveryDayWord;
 import static seedu.address.commons.util.DateTimeUtil.parseDeliveryDayWord;
 
 import java.time.DayOfWeek;
+import java.time.LocalTime;
 
 /**
  * Represents a Delivery's day in the address book.
@@ -24,17 +25,35 @@ public enum DeliveryDay {
     public static final String MESSAGE_CONSTRAINTS =
             "day should be of the valid delivery day format";
 
-    public final DayOfWeek day;
+    public DayOfWeek day;
 
     /**
-     * Constructs a {@code DeliveryDay}
+     * Private constructor for enum to store DayOfWeek value.
+     */
+    DeliveryDay(String day) {
+        this.day = parseDeliveryDayWord(day);
+    }
+
+    /**
+     * Returns a {@code DeliveryDay}
      *
      * @param day A valid day string in the valid format.
      */
-    DeliveryDay(String day) {
+    public static DeliveryDay toDeliveryDay(String day) {
         requireNonNull(day);
         checkArgument(isValidDeliveryDay(day), MESSAGE_CONSTRAINTS);
-        this.day = parseDeliveryDayWord(day);
+        DayOfWeek dayValue = parseDeliveryDayWord(day);
+
+        for (DeliveryDay deliveryDay : DeliveryDay.values()) {
+            if (deliveryDay.day.equals(dayValue)) {
+                return deliveryDay;
+            }
+        }
+
+        String exceptionMessage = "Value " + day
+                + " is not one of the DeliveryDay enum values but is valid based on isValidDeliveryDay";
+
+        throw new IllegalArgumentException(exceptionMessage);
     }
 
     /**
