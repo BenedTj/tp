@@ -1,5 +1,8 @@
 package seedu.address.model.delivery;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -69,6 +72,18 @@ public class Delivery {
      */
     public String getFormattedDeliverySchedule() {
         return startDate + " to " + endDate + "  |  " + deliveryTime;
+    }
+
+    /**
+     * Checks if delivery's end date is before the specified date.
+     *
+     * @param beforeDate Date to compare against.
+     * @return {@code true} if delivery's end date occurs before the specified date,
+     *         {@code false} otherwise.
+     */
+    public boolean hasExpired(LocalDate beforeDate) {
+        assert beforeDate != null;
+        return endDate.isBefore(beforeDate);
     }
 
     @Override

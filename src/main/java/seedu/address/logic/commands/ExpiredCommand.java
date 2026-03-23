@@ -1,0 +1,73 @@
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_BEFORE;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.person.PersonHasExpiredDeliveryPredicate;
+
+/**
+ * Finds and lists all persons with expired deliveries.
+ * <p>A delivery is considered expired if its end date is before the specified date.
+ */
+public class ExpiredCommand extends Command {
+
+    public static final String COMMAND_WORD = "expired";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all persons whose deliveries have ended before the specified date "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: "
+            + PREFIX_DATE_BEFORE + "DATE (yyyy-MM-dd)\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DATE_BEFORE + "2026-04-01";
+
+    public static final String MESSAGE_INVALID_DATE = "Date keywords should only use yyyy-MM-dd format.";
+    public static final String MESSAGE_INVALID_PREFIX = "Invalid prefix provided. Only supports: "
+            + PREFIX_DATE_BEFORE + ".";
+
+    private final PersonHasExpiredDeliveryPredicate predicate;
+
+    /**
+     * Creates an ExpiredCommand to filter based on the specified {@code PersonHasExpiredDeliveryPredicate}.
+     *
+     * @param predicate Predicate used to filter persons with expired deliveries.
+     */
+    public ExpiredCommand(PersonHasExpiredDeliveryPredicate predicate) {
+        requireNonNull(predicate);
+        this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ExpiredCommand)) {
+            return false;
+        }
+
+        ExpiredCommand otherExpiredCommand = (ExpiredCommand) other;
+        return predicate.equals(otherExpiredCommand.predicate);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("predicate", predicate)
+                .toString();
+    }
+
+}
