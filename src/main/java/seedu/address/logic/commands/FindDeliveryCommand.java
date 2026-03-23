@@ -8,16 +8,17 @@ import seedu.address.model.Model;
 import seedu.address.model.delivery.DeliveryDatePredicate;
 
 /**
- * Finds and lists all persons who require delivery on the specified date.
+ * Finds and lists all persons who require delivery on the specified date or within the specified date range.
  */
 public class FindDeliveryCommand extends Command {
 
     public static final String COMMAND_WORD = "find-delivery";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all persons who require delivery on the specified date.\n"
-            + "Parameters: DATE (yyyy-MM-dd)\n"
-            + "Example: " + COMMAND_WORD + " 2026-04-01";
+            + ": Finds all persons who require delivery on the specified date or within the specified date range.\n"
+            + "Parameters: d/DATE or s/START_DATE e/END_DATE (dates in yyyy-MM-dd)\n"
+            + "Example: " + COMMAND_WORD + " d/2026-04-01\n"
+            + "Example: " + COMMAND_WORD + " s/2026-04-01 e/2026-04-30";
 
     private final DeliveryDatePredicate predicate;
 
