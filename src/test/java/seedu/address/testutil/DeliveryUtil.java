@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUMBER_OF_DAYS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class DeliveryUtil {
      */
     private static String getDeliveryDaysArgument(Set<DeliveryDay> deliveryDaysSet) {
         return deliveryDaysSet.stream()
-                .map(deliveryDay -> DAY_NUMBER_FORMATTER.format(deliveryDay.day))
+                .map(deliveryDay -> DAY_NUMBER_FORMATTER.format(deliveryDay.getDay()))
                 .collect(Collectors.joining(""));
     }
 }

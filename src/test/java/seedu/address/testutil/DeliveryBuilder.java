@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.delivery.DeliveryDay.toDeliveryDay;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +12,6 @@ import seedu.address.model.delivery.EndDate;
 import seedu.address.model.delivery.SkippedDate;
 import seedu.address.model.delivery.StartDate;
 import seedu.address.model.util.SampleDataUtil;
-
-import static seedu.address.model.delivery.DeliveryDay.toDeliveryDay;
 
 /**
  * A utility class to help with building Delivery objects

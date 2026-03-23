@@ -1,14 +1,16 @@
 package seedu.address.commons.util;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
 public class DateTimeUtilTest {
     @Test
@@ -40,14 +42,14 @@ public class DateTimeUtilTest {
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryDate(" ")); // spaces only
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryDate("12")); // only date number
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryDate("2012")); // only year
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.parseDeliveryDate("01-12")); // does not contain year
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.parseDeliveryDate("2020-01")); // does not contain date number
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.parseDeliveryDate("12-01-2026")); // incorrect format
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.parseDeliveryDate("2020-02-31")); // invalid date
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryDate("01-12")); // does not contain year
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryDate("2020-01")); // does not contain date number
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryDate("12-01-2026")); // incorrect format
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryDate("2020-02-31")); // invalid date
 
         // valid delivery date
         assertEquals(LocalDate.of(2019, 10, 15),
@@ -79,8 +81,8 @@ public class DateTimeUtilTest {
         // invalid days
         assertThrows(IllegalArgumentException.class, () -> DateTimeUtil.parseDeliveryDayWord("")); // empty string
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryDayWord(" ")); // spaces only
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.parseDeliveryDayWord("Mon")); // only 3-character day
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryDayWord("Mon")); // only 3-character day
 
         // valid days
         assertEquals(DayOfWeek.MONDAY, DateTimeUtil.parseDeliveryDayWord("Monday"));
@@ -88,7 +90,7 @@ public class DateTimeUtilTest {
         assertEquals(DayOfWeek.FRIDAY, DateTimeUtil.parseDeliveryDayWord("FRIDAY"));
         assertEquals(DayOfWeek.WEDNESDAY, DateTimeUtil.parseDeliveryDayWord("WEDnesDay"));
     }
-    
+
     @Test
     public void isValidDeliveryDayNumber() {
         // null day numbers
@@ -124,8 +126,8 @@ public class DateTimeUtilTest {
         // invalid day numbers
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.convertDayNumberToDayWord("")); // empty string
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.convertDayNumberToDayWord(" ")); // spaces only
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.convertDayNumberToDayWord("Mon")); // 3-character day
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.convertDayNumberToDayWord("Mon")); // 3-character day
 
         // full word representing the day
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.convertDayNumberToDayWord("Monday"));
@@ -133,12 +135,12 @@ public class DateTimeUtilTest {
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.convertDayNumberToDayWord("FRIDAY"));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.convertDayNumberToDayWord("WEDnesDay"));
 
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.convertDayNumberToDayWord("-3")); // negative number
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.convertDayNumberToDayWord("0")); // zero value
-        assertThrows(DateTimeParseException.class,
-                     () -> DateTimeUtil.convertDayNumberToDayWord("8")); // number exceeding 7
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.convertDayNumberToDayWord("-3")); // negative number
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.convertDayNumberToDayWord("0")); // zero value
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.convertDayNumberToDayWord("8")); // number exceeding 7
 
         // valid day numbers
         assertEquals("Monday", DateTimeUtil.convertDayNumberToDayWord("1"));
@@ -173,9 +175,12 @@ public class DateTimeUtilTest {
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime("")); // empty string
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime(" ")); // spaces only
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime("12")); // only one number
-        assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime("01-12")); // does not contain year
-        assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime("2020-01")); // does not contain date number
-        assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseDeliveryTime("2026-01-12")); // date format
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryTime("01-12")); // does not contain year
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryTime("2020-01")); // does not contain date number
+        assertThrows(DateTimeParseException.class, () ->
+                DateTimeUtil.parseDeliveryTime("2026-01-12")); // date format
 
         // valid time
         assertEquals(LocalTime.of(12, 59), DateTimeUtil.parseDeliveryTime("12:59"));
