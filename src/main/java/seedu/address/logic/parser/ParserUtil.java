@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.DateTimeUtil.convertDayNumberToDayWord;
-import static seedu.address.commons.util.DateTimeUtil.isValidDeliveryDayNumber;
+import static seedu.address.commons.util.DateTimeUtil.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -140,11 +139,11 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        try {
-            return LocalDate.parse(trimmedDate);
-        } catch (DateTimeParseException e) {
+        if (!isValidDeliveryDate(trimmedDate)) {
             throw new ParseException(MESSAGE_INVALID_DATE);
         }
+
+        return parseDeliveryDate(trimmedDate);
     }
 
     /**
