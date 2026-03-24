@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
