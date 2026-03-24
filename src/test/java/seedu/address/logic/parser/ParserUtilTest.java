@@ -1,17 +1,14 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.util.DateTimeUtil.convertDayNumberToDayWord;
+import static seedu.address.logic.commands.CommandTestUtil.UNSORTED_DAYS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.model.delivery.DeliveryDay.toDeliveryDay;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -364,6 +361,29 @@ public class ParserUtilTest {
     @Test
     public void parseDeliveryDays_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDeliveryDays(INVALID_DAYS));
+    }
+
+    @Test
+    public void parseDeliveryDays_duplicatedValue_throwsParseException() {
+        String[] deliveryDayNumbers = {VALID_DAY_NUMBER_1, VALID_DAY_NUMBER_3, VALID_DAY_NUMBER_3, VALID_DAY_NUMBER_4};
+
+        assert Arrays.stream(deliveryDayNumbers).distinct().count() != deliveryDayNumbers.length;
+
+        String deliveryDayNumbersArgument = String.join("", deliveryDayNumbers);
+
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeliveryDays(deliveryDayNumbersArgument));
+    }
+
+    @Test
+    public void parseDeliveryDays_unsortedValue_returnsSortedDeliveryDaySet() throws Exception {
+        Set<DeliveryDay> actualDeliveryDaySet = ParserUtil.parseDeliveryDays(UNSORTED_DAYS);
+        Set<DeliveryDay> expectedDeliverySet = Arrays.stream(UNSORTED_DAYS.split(""))
+                .sorted()
+                .map(DateTimeUtil::convertDayNumberToDayWord)
+                .map(DeliveryDay::toDeliveryDay)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        assertArrayEquals(expectedDeliverySet.toArray(), actualDeliveryDaySet.toArray());
     }
 
     @Test

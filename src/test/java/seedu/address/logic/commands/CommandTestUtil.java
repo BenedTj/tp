@@ -54,6 +54,8 @@ public class CommandTestUtil {
     public static final String VALID_DELIVERY_DAY_BOB = "Wednesday";
     public static final String VALID_SKIPPED_DATE = "2020-02-10";
 
+    public static final String UNSORTED_DAYS = "4231";
+
     public static final String VALID_NUMBER_OF_DAYS_AMY = "61";
     public static final String VALID_NUMBER_OF_DAYS_BOB = "14";
     public static final String VALID_DAYS_AMY = "1";
