@@ -1,5 +1,6 @@
 package seedu.address.model.delivery;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.function.Predicate;
@@ -50,14 +51,16 @@ public class DeliveryDatePredicate implements Predicate<Person> {
             return false;
         }
 
-        DayOfWeek targetDay = targetDate.getDayOfWeek();
-
         if (delivery.getDeliveryDays().stream()
-                .noneMatch(deliveryDay -> deliveryDay.isSameDay(targetDay))) {
+                .noneMatch(deliveryDay -> {
+                    DayOfWeek dow = deliveryDay.getDay();
+                    LocalDate firstOccurrence = overlapStart.with(TemporalAdjusters.nextOrSame(dow));
+                    return !firstOccurrence.isAfter(overlapEnd);
+                })) {
             return false;
         }
 
-        return false;
+        return true;
     }
 
     @Override
