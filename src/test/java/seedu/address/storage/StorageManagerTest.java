@@ -49,7 +49,6 @@ public class StorageManagerTest {
     }
 
     @Test
-    @Disabled("Temporarily Disabled until a proper removal of skipped dates is done")
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the

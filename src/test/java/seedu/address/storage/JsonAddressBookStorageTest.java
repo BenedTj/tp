@@ -63,7 +63,6 @@ public class JsonAddressBookStorageTest {
 
 
     @Test
-    @Disabled("Temporarily Disabled until a proper removal of skipped dates is done")
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
