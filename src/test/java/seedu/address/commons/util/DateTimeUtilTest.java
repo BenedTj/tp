@@ -3,7 +3,9 @@ package seedu.address.commons.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.DeliveryUtil.generateEndDate;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -11,6 +13,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.model.delivery.EndDate;
+import seedu.address.model.delivery.StartDate;
 
 public class DateTimeUtilTest {
     @Test
@@ -194,5 +199,21 @@ public class DateTimeUtilTest {
 
         // valid time
         assertEquals(LocalTime.of(12, 59), DateTimeUtil.parseDeliveryTime("12:59"));
+    }
+
+    @Test
+    public void isValidDeliveryDateRange_invalidDateRange_returnsFalse() {
+        LocalDate startDate = LocalDate.of(2026, 12, 1);
+        LocalDate endDate = startDate.minusDays(5);
+
+        assertFalse(DateTimeUtil.isValidDeliveryDateRange(startDate, endDate));
+    }
+
+    @Test
+    public void isValidDeliveryDateRange_validDateRange_returnsTrue() {
+        LocalDate startDate = LocalDate.of(2026, 12, 1);
+        LocalDate endDate = startDate.minusDays(0);
+
+        assertTrue(DateTimeUtil.isValidDeliveryDateRange(startDate, endDate));
     }
 }
