@@ -195,8 +195,8 @@ Format: `schedule INDEX st/START_DATE ed/END_DATE tm/DELIVERY_TIME d/DELIVERY_DA
 * `24:00` is not a valid value for `DELIVERY_TIME`.
 
 Examples:
-* `schedule 1 st/2026-02-01 ed/2026-02-02 tm/13:00 d/125`
-* `schedule 4 st/2026-03-11 ed/2026-04-01 tm/15:30 d/2456`
+* `schedule 1 st/2026-02-01 ed/2026-02-02 tm/13:00 d/12` adds a delivery for the 1st customer on the list. The delivery starts on 1 February 2026, ends on 2 February 2026 and occurs at 1 PM on Mondays and Tuesdays.
+* `schedule 4 st/2026-03-11 ed/2026-04-01 tm/15:30 d/246` adds a delivery for the 4th customer on the list. The delivery starts on 11 March 2026, ends on 1 April 2026 and occurs at 3:30 PM on Tuesday, Thursdays and Saturdays.
 
 ### Unscheduling a delivery : `unschedule`
 
