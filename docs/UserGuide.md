@@ -193,11 +193,10 @@ Finds customers who have a delivery scheduled on the given date or within the gi
 Format: `find-delivery dt/DATE` or `find-delivery st/START_DATE ed/END_DATE`
 
 * All dates must be in the format `yyyy-MM-dd`, where `yyyy` is the 4-digit year, `MM` is the 2-digit month, and `dd` is the 2-digit day. e.g. `2026-04-01`
-* `dt/` searches for an exact date. `st/` and `ed/` must be used together to search within a date range (inclusive).
-* A customer is shown only if all of the following are true:
+* `dt/` searches for an exact date. `st/` and `ed/` must be used together to search within a date range.
+* A customer is shown only if all of the following criteria are met:
   * They have a delivery assigned.
-  * The given date (or date range) overlaps with their delivery's start and end dates. The date range specified by `st/` and `ed/` is inclusive of both boundary dates.
-  * At least one of their scheduled delivery days falls within the overlapping period.
+  * The customer has a scheduled delivery that falls on the given date or within the date range specified (including the start and end dates itself).
 * If no customers match, an empty list is shown.
 
 Examples:
