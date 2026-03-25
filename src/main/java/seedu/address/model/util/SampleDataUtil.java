@@ -25,7 +25,7 @@ public class SampleDataUtil {
 
     /** Sample delivery objects */
     private static final Delivery SAMPLE_DELIVERY_ALEX = new Delivery(
-            new StartDate("2026-10-21"), new EndDate("2026-12-21"),
+            new StartDate("2026-10-21"), new EndDate("2026-12-20"),
             getDeliveryDaySet("Monday", "Tuesday", "Wednesday", "Friday", "Sunday"),
             new DeliveryTime("16:00")
     );
