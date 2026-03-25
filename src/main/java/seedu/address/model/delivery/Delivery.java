@@ -41,6 +41,10 @@ public class Delivery {
         this.deliveryTime = deliveryTime;
     }
 
+    /**
+     * Returns true if the given date range is valid
+     * ({@code startDate} is not after {@code endDate}).
+     */
     public static boolean isValidDateRange(StartDate startDate, EndDate endDate) {
         return isValidDeliveryDateRange(startDate.date, endDate.date);
     }
