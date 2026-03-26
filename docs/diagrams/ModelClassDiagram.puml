@@ -48,12 +48,12 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *--> Delivery
+Person *--> "0..1"Delivery
 
 Delivery *--> StartDate
 Delivery *--> EndDate
 Delivery *--> DeliveryTime
-Delivery *--> "0..7"DeliveryDay
+Delivery *--> "1..7"DeliveryDay
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
