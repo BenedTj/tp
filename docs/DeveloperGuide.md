@@ -27,7 +27,7 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting Up and Getting Started
+## Getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -169,7 +169,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Feature implementation
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
